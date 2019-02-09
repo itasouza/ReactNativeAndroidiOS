@@ -8,6 +8,6 @@ module.exports = {
 
       await tweet.save();
       return res.json(tweet);
-   },
+   }
 
 };

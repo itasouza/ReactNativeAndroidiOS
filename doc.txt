@@ -1,0 +1,7 @@
+https://github.com/Rocketseat/ambiente-react-native
+
+--instalação do react
+npm i -g create-react-app
+
+--limpar a cache do npm
+npm cache clean --force
