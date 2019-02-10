@@ -8,8 +8,14 @@ import twitterLogo from '../twitter.svg';
 export default class Timeline extends Component {
 
   state = {
+    tweets:[],
     newTweet: ""
   };
+  
+  async componentDidMount(){
+     const response = await api.get('tweets');
+     this.setState({tweets: response.data});
+  }
 
   handleNewTweet = async e => {
 
@@ -19,7 +25,7 @@ export default class Timeline extends Component {
         const author  = localStorage.getItem('@GoTwitter:username');
         console.log(content, author,e.keyCode);
         
-        await api.post('tweets',{author,content});
+        await api.post('tweets',{content,author});
         this.setState({newTweet:""});
   };
 
@@ -42,7 +48,10 @@ export default class Timeline extends Component {
                     
                 </form>
 
-  
+                 { this.state.tweets.map(tweet => (
+                     <h1>{tweet.content}</h1>
+                  ))}
+                  
              </div>
 
          );
